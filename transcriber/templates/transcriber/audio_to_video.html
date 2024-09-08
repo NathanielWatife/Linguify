@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Audio-to-Video</title>
+        <link href="{% static 'transcriber/css/min.css' %}" rel="stylesheet">
+        <script>
+            function showLoadingMessage() {
+                // Show the loading message
+                document.getElementById('loadingMessage').style.display = 'block';
+                
+                // Disable the submit button to prevent multiple clicks
+                document.getElementById('submitBtn').disabled = true;
+            }
+        </script>
+    </head>
+<body>
+    <!-- nabvar -->
+    <div class="navbar">
+        <a href="#" class="logo">Linguify</a>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="{% url "text-to-audio" %}">Convert To Audio</a>
+            <a href="{% url "audio-to-text" %}">Convert Audio To Text</a>
+            <a href="{% url "video-to-audio" %}">Convert Video to Audio</a>
+        </div>
+    </div>
+    <!-- end -->
+    <div class="container">
+        <a href="/" class="back-link">Home</a>
+        <h1>Convert Audio to Video</h1>
+    
+        <!-- Make sure enctype="multipart/form-data" is present for file uploads -->
+        <form method="POST" enctype="multipart/form-data" onsubmit="showLoadingMessage()">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" id="submitBtn">Convert Audio to Video</button>
+        </form>
+        <p id="loadingMessage">Your transaction is in progress, please wait...</p>
+    </div>
+</body>
+</html>

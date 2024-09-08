@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video-to-Audio</title>
+</head>
+<body>
+    <!-- nabvar -->
+    <div class="navbar">
+        <a href="#" class="logo">Linguify</a>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="{% url "text-to-audio" %}">Convert To Audio</a>
+            <a href="{% url "audio-to-text" %}">Convert Audio To Text</a>
+            <a href="{% url "audio-to-video" %}">Convert Audio to Video</a>
+        </div>
+    </div>
+    <!-- end -->
+
+    <div class="container">
+        <a href="/" class="back-link">Home</a>
+        <h1>Convert Video to Audio</h1>
+    
+        <form method="POST" enctype="multipart/form-data" onsubmit="showLoadingMessage()">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" id="submitBtn">Extract Audio from Video</button>
+        </form>
+        <p id="loadingMessage">Your transaction is in progress, please wait...</p>
+        {% if output_files %}
+            <h2>Generated Files:</h2>
+            <ul>
+                {% for file in output_files %}
+                    {% if file.file_type == 'video' %}
+                        <!-- Display video player -->
+                        <li>
+                            <video controls width="400">
+                                <source src="{{ file.file_url }}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <br>
+                            <!-- Provide a download link -->
+                            <a href="{{ file.file_url }}" download="{{ file.file_name }}">Download {{ file.file_name }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+</body>
+</html>
