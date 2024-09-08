@@ -22,8 +22,8 @@ Clone the Repository:
 bash
 Copy code
 ```
-git clone <repository_url>
-cd <repository_name>
+git clone <https://github.com/NathanielWatife/Linguify.git>
+cd <Linguify>
 ```
 Set Up a Virtual Environment:
 
