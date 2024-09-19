@@ -19,7 +19,8 @@
 <body>
     <!-- nabvar -->
     <div class="navbar">
-        <a href="/" class="logo">Linguify</a>
+        <a href="/" class="logo"><img src="{% static 'transcriber/img/logo.png' %}" class="img-logo" alt=""></a>
+
         <div class="nav-links">
             <a href="{% url "text-to-audio" %}">Convert To Audio</a>
             <a href="{% url "audio-to-text" %}">Convert Audio To Text</a>
@@ -33,7 +34,6 @@
     <div class="content">
         <!-- Your main content goes here -->
         <h1>Welcome to Linguify</h1>
-        <p>This is the homepage.</p>
     </div>
     <!-- content -->
     

@@ -38,6 +38,12 @@ a:hover {
     font-size: 15px;
 }
 
+.img-logo {
+    width: 100px;
+    height: 60px;
+    border-radius: 5px;
+}
+
 /* Content */
 .content {
     padding: 20px;

@@ -1,7 +1,17 @@
+"""
+    import module for using the models libraries
+"""
 from django.db import models
 
 # Create your models here.
 # choices 
+"""
+    Create a list for choice for user to choose
+    - text: text input for user.
+    - audio: upload audio file for user.
+    - video: upload video file for user.
+    - image: upload image for video
+"""
 FILE_TYPE_CHOICES = [
 ('text', 'Text'),
 ('audio', 'Audio'),
@@ -11,7 +21,10 @@ FILE_TYPE_CHOICES = [
 
 class MediaFile(models.Model):
     """
-    Ge
+        media for file uploads
+        - file: file upload.
+        - file_type: file upload for each file type.
+        uploaded_At: date and time of upload
     """
     file = models.FileField(upload_to='uploads/%Y/%m/%d')
     file_type = models.CharField(max_length=10, choices=FILE_TYPE_CHOICES)
@@ -21,13 +34,15 @@ class MediaFile(models.Model):
         return f"{self.file_type.capitalize()} File: {self.file.name}"
 
 class TextToAudio(models.Model):
-    """"""
+    """
+        
+    """
     text = models.TextField()
     audio_file = models.OneToOneField(MediaFile, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Text to Adio Conversion: {self.text[:50]}..."
+        return f"Text to Audio Conversion: {self.text[:50]}..."
     
 
 class AudioToText(models.Model):
